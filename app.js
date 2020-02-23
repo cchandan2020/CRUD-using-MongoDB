@@ -8,7 +8,7 @@ const path = require('path');
 const db= require("./db");
 const collection = "todo";
 
-app.get('./',(req,res)=>{
+app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'index.html'));
 });
 
@@ -23,19 +23,23 @@ app.get('/getTodos',(req,res)=>{
     });
 });
 
-app.put('./:id',(req,res)=>{
+app.put('/:id',(req,res)=>{
  const todoID = req.params.id;
  const userInput = req.body;
 
- db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(todoID)},{$set : {todo: userInput.todo}},{returnOriginal : false},(err, result)=>{
+db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(todoID)},{$set : {todo: userInput.todo}},{returnOriginal : false},(err, result)=>{
+
+//db.getDB().collection(collection).findOneAndUpdate({_id : todoID},{$set : {todo: userInput.todo}},{returnOriginal : false},(err, result)=>{
 
         if(err)
             console.log(err);
             else
-             res.json(result);
+            res.json(result);
    
     });
 });
+
+
 
 
 db.connect((err)=>{
