@@ -1,0 +1,19 @@
+language: node_js
+nodejs: 
+    - 12.14.1
+cache: npm
+
+install: 
+    -npm ci
+    - 
+script: 
+    - npm test 
+    - npm 
+
+deploy: 
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB-TOKEN
+    on: 
+        branch: gh-pages
+
