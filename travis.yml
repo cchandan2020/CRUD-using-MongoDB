@@ -1,12 +1,16 @@
 language: node_js
-nodejs: 
-    - 12.14.1
+node_js: 
+    - "stable"
+env: 
+    - NODE-ENV="development"
+    - NODE-ENV="production"
+    
 cache: npm
 
 install: 
     -npm ci
-    - 
-script: 
+    
+script: gulp travis
     - npm test 
     - npm 
 
